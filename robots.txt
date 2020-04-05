@@ -1,0 +1,8 @@
+User-Agent: google
+User-Agent: googlebot
+
+User-agent: *
+Disallow: /
+
+User-Agent: Twitterbot
+ Disallow:

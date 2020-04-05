@@ -1,0 +1,150 @@
+.lds-roller { position: absolute; top: 100px; left: 100px; }
+             .lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+* { background: black !important; color: #666;}
+
+body { margin: auto; max-width: 1400px; }
+main, body {  }
+nav,aside,section,article,footer {
+  padding: 8px;
+  margin: 8px;
+
+}
+aside { min-width: 300px; }
+article { max-width: 1000px; }
+main { display: flex; }
+body { display: flex; }
+.row { display: flex;  flex-direction: row; }
+.col { display: flex;  flex-direction: column; }
+* { font-size: 22px; font-family: Arial; line-height: 26px; color: #888; }
+h1 { font-family: verdana; font-weight: normal; color: #ccc; font-size: 50px; line-height: 42px; }
+h2 { font-family: verdana; font-weight: normal; color: #eee; font-size: 20px; line-height: 22px; }
+.separator { height: 32px; }
+.short-separator { height: 16px; }
+.shortest-separator { height: 7px; }
+
+.noselect {
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+-khtml-user-select: none; /* Konqueror HTML */
+-moz-user-select: none; /* Old versions of Firefox */
+-ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                      supported by Chrome, Opera and Firefox */ }
+
+input[type="filef"], input[type="submfit"] {
+display: none;
+}
+
+.upload-button, .custom-file-upload {
+border: 1px solid #ccc;
+display: inline-block;
+padding: 6px 12px;
+cursor: pointer;
+}
+
+#sunset * { line-height: 64px; }
+
+input[type='file']:after {
+content: "Upload your sunset photo";
+}
+
+a { color: teal; }
+#msgc { background: #eee; margin-bottom: 8px; padding: 8px; line-height: 22px;}
+#msg, #msg * { font-size: 14px; font-family: verdana; }
+#loading { background: transparent !important; position: absolute; top: 180px; left: 420px; display: block;  }
+.note { bottom: -32px; left: 16px; display: block; line-height: 32px; 
+width: 874px; background: black; position: relative; padding-left: 16px; }
+.note, .note * { color: white !important; font-family: verdana; font-size: 14px; }
+#locs { color: #00ff96 !important; }
+#suns { color: yellow !important; }
+h1 { font-size: 24px !important; margin: 0; color: #444; margin-top: 24px;  }
+#timeline { display: flex;  display: flex; flex-wrap: wrap; align-items: flex-start; }
+sunsetbox { width: 220px; height: 150px; display: block; color: #666; margin: 16px !important; background-image: url('https://www.infinitesunset.app/static/empty-sunset.png') !important; }
+.custom-file-upload { border: 1px solid #333;  width: 250px; font-size: 40px; background: yellow; color: orangered; text-align: center; line-height: 40px; }
+.upload-button { border: 1px solid #333; width: 200px; font-size: 40px; background: orangered; color: yellow; text-align: center; line-height: 40px; }
+label { display: inline-block; margin: 10px; }
+form { display: flex; flex-direction: row; }

@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Infinite Sunset App</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="https://www.infinitesunset.app/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://www.infinitesunset.app/static/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://www.infinitesunset.app/static/favicon-16x16.png">
+        <link rel="manifest" href="https://www.infinitesunset.app/static/site.webmanifest">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <meta http-equiv = "Content-Type" content="text/html;charset=utf-8" />
+        <meta http-equiv = "content-language" content="en-US" />
+        <meta name="google-site-verification" content="9ypE6-6kAA1FSmD-Y47heO48vwtUoqq5BhE5QiCezTk" />
+        <link rel = "icon" href = "https://www.infinitesunset.app/favicon.png" />
+        <meta name = "viewport"   content="width=920, initial-scale=1.0"/>
+        <meta name = "description" content = "Rate my sunset app. Infinite sunsets. Everywhere. 24-7. Right now."/>
+        <meta name = "keywords"      content = "infinite sunset, everywhere, 24/7"/>
+        <meta name = "author"         content = "--"/>
+        <meta name = "subject"         content = "Infinite Sunset"/>
+        <meta name = "copyright"        content = "---"/>
+        <meta name = "web_author"       content = "---">
+        <meta name = "robots"             content = "index, follow"/>
+        <meta name = "abstract"           content = "css"/>
+        <meta name = "revisit-after"       content = "3 days"/>
+        <meta name = "contact"            content = "---" />
+        <meta name = "distribution"       content = "global" />
+        <meta name = "news_keywords"     content = "infinite,sunset,app" />
+        <meta name = "rating"            content = "general" />
+        <meta name = "verify-v1"         content = "---" />
+        <meta property = "og:title"          content = "Infinite Sunset App"/>
+        <meta property = "og:type"           content = "article"/>
+        <meta property = "og:url"            content = "https://www.infinitesunset.app"/>
+        <meta property = "og:site_name"      content = "Infinite Sunset App"/>
+        <meta property = "og:image"          content = "https://www.infinitesunset.app/static/ocean.sunset.png" />
+        <meta name = "language"            content = "English">
+        <meta name = "twitter:card"        content = "summary_large_image" />
+        <meta name = "twitter:site"        content = "@infinitesunset" />
+        <meta name = "twitter:creator"     content = "@js_tut" />
+        <meta name = "twitter:title"       content = "Infinite Sunset App" />
+        <meta name = "twitter:description" content = "Sunsets, everywhere, all the time." />
+        <meta name = "twitter:image"       content = "https://www.infinitesunset.app/static/ocean.sunset.png" />
+        <!-- Light Mode is the default persistent theme -->
+        <link rel = "stylesheet" title="Default Style" href = "https://www.infinitesunset.app/static/sunset.css" />
+        <!-- Dark Mode & Themes; Alternate Style Sheets
+        <link href = 'dark.css' property = "stylesheet" title = "dark" rel = "alternate stylesheet" type = "text/css" />
+        <link href = "superdark.css" property = "stylesheet" title = "superdark" rel = "alternate stylesheet" type = "text/css" />
+        <link href = "light.css" property = "stylesheet" title = "light" rel = "alternate stylesheet" type = "text/css" />
+        <link href = "blue.css" property = "stylesheet" title = "blue" rel = "alternate stylesheet" type = "text/css" />
+        <link href = "green.css" property = "stylesheet" title = "green" rel = "alternate stylesheet" type = "text/css" />
+        <link href = "yellow.css" property = "stylesheet" title = "yellow" rel = "alternate stylesheet" type = "text/css" />-->
+        <script type = "application/ld+json"> {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": ""},
+        "headline": "Infinite Sunset",
+        "image": ["https://www.infinitesunset.app/sunset.png"],
+        "datePublished": "2015-08-23T08:00:00+08:00",
+        "dateModified" : "2015-08-23T09:20:00+08:00",
+        "author"       : { "@type": "Person", "name": "Steve Martin" },
+        "publisher"    : { "@type": "Organization", "name": "CSS", "logo": { "@type": "ImageObject", "url": "https://www.infinitesunset.app/sunset.png" } },
+        "description"  : "Sunsets, everywhere, all the time."}
+        </script>
+        <script src = 'https://www.infinitesunset.app/js/jquery.js' type = 'text/javascript'></script>
+        <script src = 'https://www.infinitesunset.app/js/ui.js' type = 'text/javascript'></script>
+        <script src = 'https://www.infinitesunset.app/js/hms.js'></script>
+        <script type = "module">
+
+            window.website = {};
+            website.url = 'https://' + window.location.hostname;
+            window.VisitTimestamp = Math.floor(Date.now() / 1000);
+
+            /* Front-end API */ 
+            import { User } from "./api/user.js";
+
+            let degrees = 0;
+
+            function setActiveStyleSheet(title) {
+                if (title == null) return;
+                let stylesheets = document.querySelectorAll(`link[rel="alternate stylesheet"]`);
+                stylesheets.forEach(sheet => sheet.disabled = true);
+                let link = `link[title="${title}"]`;
+                console.log("Switching to link = " + link);
+                let stylesheet = document.querySelector(link);
+                stylesheet.disabled = false;
+                // Store last theme in local storage...
+                console.log("Setting localStorage item 'theme' to " + title);
+                localStorage.setItem("theme", title);
+            }
+
+            // Create payload -- redundant everywhere, now in neat make() function
+            let make = function(payload) {
+                return { method: 'post',
+                        headers: { 'Accept': 'application/json' },
+                        body: JSON.stringify(payload) };
+            }
+
+            class User {
+                constructor() { }
+            }
+
+            /* (Not implemented on back-end yet)
+                Create user in database */
+                payload = {
+                username   : "felix",
+                email      : "felix@thecat.net",
+                first_name : "Felix",
+                last_name  : "Felicis",
+                password   : "Password123",
+                type       : "normal" } */
+            User.signup = function(payload) {
+                fetch("/api/user/signup", make(payload))
+                .then(promise => promise.json())
+                .then(json => {
+                    if (json.success) {
+                        /* User was added to mongo */
+                    } else {
+                        /* Something went wrong */
+                    }
+                });
+            }
+
+            // "1000" becomes "1,000"
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            let is_mobile = true;
+
+            let resize = event => {
+                if (event.target.innerWidth < 1000) {
+                    is_mobile = true;
+                } else {
+                    is_mobile = false;
+                }
+            }
+
+            // DOM completed
+            window.addEventListener('DOMContentLoaded', (event) => {
+
+            });
+
+            // Browser resize event
+            window.onresize = function(event) {
+                resize(event);
+            }
+
+            // Convert [lat, lon] world to 2D coordinates [x,y] on image
+            function World2Image(pointLat, pointLon) {
+                const mapWidth = 920;
+                const mapHeight = 468;
+                const x =  ((mapWidth / 360.0) * (180 + pointLon));
+                const y =  ((mapHeight / 180.0) * (90 - pointLat));
+                return [x, y];
+            }
+
+            // Media finished loading
+            window.onload = function(event) {
+
+                window.cameras = [];
+    
+                // Because this is <script type = "module", to make User object
+                // globally available so it can be used in HTML attribute events,
+                // we have to manually add it to window object
+                window.onload = U => {
+                    window.User = User;
+                }
+
+                // Create canvas
+                const c = document.getElementById("canvas");
+                const ctx = c.getContext("2d");
+
+                const img = document.getElementById("world");
+                ctx.drawImage(img, 0, 0, 920, 468);
+
+                let msg = document.getElementById("msg");
+                let here = document.getElementById("here");
+                let polaroid = document.getElementById("polaroid");
+
+                // Browser supports HTML5 geolocation?
+                if (navigator.geolocation) {
+
+                    // Get lon/lat
+                    navigator.geolocation.getCurrentPosition(function(position) {
+
+                        let lat = position.coords.latitude;
+                        let lon = position.coords.longitude;
+
+                        // Convert to 2D coordinates on world.png image
+                        let xy = World2Image(lat, lon);
+                        let x = xy[0];
+                        let y = xy[1];
+
+                        msg.innerHTML = `You are at ${lat} x ${lon} or = ${x} x ${y}`;
+
+                        // Add this user to mongo
+                        User.add({ x : x, y : y, lat: lat, lon: lon });
+
+                        setTimeout(time => {
+
+                            // Get all user locations on the map from mongo
+                            fetch("/api/get/users", make({})).then(promise => promise.json()).then(json => {
+                                window.cameras = json.userList;
+                                json.userList.forEach(photographer => {
+                                    // console.log(photographer);
+                                });
+                                window["loading"].style.display = 'none';
+                                window["locs"].innerHTML = json.userList.length;
+                            });
+                        }, 500);
+
+                        // Draw user locations on top of world.png image
+                        function loop() {
+                            degrees += 0.1;
+                            if (here && ctx) {
+
+                                // Draw world.png as background
+                                ctx.drawImage(img, 0, 0, 920, 468);
+
+                                // save context
+                                ctx.save();
+
+                                ctx.translate(x, y);
+                                ctx.drawImage(here, -here.width/2, -here.width/2);
+
+                                // draw markers
+                                ctx.translate(-x, -y);
+                                if (window.cameras)
+                                    window.cameras.forEach(cam => ctx.drawImage(polaroid, cam.x-polaroid.width/2, cam.y-polaroid.width/2))
+
+                                // restore context
+                                ctx.restore();
+                            }
+
+                            // keep repeating animation frame...
+                            requestAnimationFrame(loop);
+                        }
+
+                        // start animation
+                        requestAnimationFrame(loop);
+                    });
+
+                } else msg.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        </script>
+    </head>
+    <body class = "col"> 
+
+        <div style = 'display: none;' id = "msgc"><span><b style = 'font-size: 14px; margin-left: 8px; margin-right: 8px;'>Infinite Sunset</b></span> <span id = "msg"></span></div>
+
+        <nav style = 'text-align: center;'>
+            <h1>Where Is Sunset Now? <a href = "#">Sign Up</a> or <a href = "#">Log In</a></h1>
+        </nav>
+
+        <section class = "row" style = 'display: flex; flex-direction: col;  width: 930px; margin: auto;'>
+            <main class = "col" style = "width: 930px">
+                
+                <div style = "display: block; position: relative; width: 920px; height: 468px;margin: auto; border: 1px solid #222;">
+                    <canvas id = "canvas" style = "position: relative; display: block;  width: 920px; height: 468px;" width = "920px" height = "468px"></canvas>    
+                    <div id = "loading" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
+                
+                <article>
+                    <img style = "position: absolute; top: -1000px; left: -1000px;" src = "https://www.infinitesunset.app/static/here2.png" alt = "here cross" id = "here" />
+                    <img style = "position: absolute; top: -1000px; left: -1000px;" src = "https://www.infinitesunset.app/static/world3.png" alt = "sunset world map" id = "world" />
+                    <img style = "position: absolute; top: -1000px; left: -1000px;" src = "https://www.infinitesunset.app/static/camera.png" alt = "sunset location" id = "polaroid" />
+                </article>
+
+                <aside>
+                    
+                    <section id = "sunsets">
+
+                        <form style = "width: 580px; display: block; margin: auto;" action = "/api/sunset/upload" method = "post" enctype = "multipart/form-data">
+                            <label class = "custom-file-upload">
+                                <input type = "file" name = "file" style = 'display: none;'/>
+                                Browse
+                            </label>
+                            <label class = "upload-button">
+                                Upload <input type = "submit" style = "display: none;"/>
+                            </label>
+                        </form>
+
+                        <h2 style = "margin: 0; color: white;">Most Recent Sunsets</h2>
+                        <section id = "timeline" class = "row"
+                        style = 'justify-content; flex-start; justify-self: flex-start; justify-items: flex-start;'>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                            <section class = "sunsetbox"></section>
+                        </section>
+                    </section>
+                </aside>
+          
+            </main>
+        </section>
+        <div class = "note" style = 'color: #777 !important; margin: auto; display: block; max-width: 650px;'>Total <span id = "locs">0</span> locations identified and <span id = "suns">0</span> sunsets photographed</div>
+        <footer style = "text-align: center; height: 64px; line-height: 64px; color: #555; margin-top: 16px; margin-bottom: 30px; ">
+            &copy; 2020 <a href = "https://www.infinitesunset.app" style = "text-decoration: none;" title = "Infinite Sunsets">InfiniteSunset.app</a>
+        </footer>
+    </body>
+</html>
